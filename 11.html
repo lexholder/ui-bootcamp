@@ -1,0 +1,245 @@
+<html>
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito';
+            height: 100vh;
+        }
+
+        header {
+            background: #3D5262;
+            display: flex;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        a.logo {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 1em .5em 0;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            background: #1D2226;
+            width: 66%;
+            visibility: hidden;
+            transform: translateX(50%);
+            opacity: 0;
+            transition: all .3s;
+        }
+
+        .exit {
+            width: 2em;
+            float: right;
+            margin: .5em;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 4em;
+        }
+
+        li a {
+            color: #7B8994;
+            text-decoration: none;
+            display: block;
+            padding: .5em 1em;
+        }
+
+        .open {
+            cursor: pointer;
+            margin: .5em;
+        }
+
+        .active a {
+            color: #008AF8;
+            font-weight: bold;
+        }
+
+        li a:hover {
+            background: #2E363D;
+        }
+
+        .open-nav {
+            visibility: unset;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Your CSS Here */
+
+        .submenu {
+            padding: 0 1em;
+        }
+
+        .submenu p {
+            margin: 1em 0 1em 1em;
+            color: #707D88;
+            line-height: 1.4em;
+        }
+
+        .submenu ul {
+            margin: 1em 0 1em;
+        }
+
+        .submenu a {
+            font-weight: normal;
+            color: #7B8994;
+            background: none;
+            font-weight: bold;
+        }
+
+        .submenu a:hover {
+            background: none;
+        }
+
+        li a {
+            font-weight: bold;
+            background: #282E33;
+            margin-bottom: 2px;
+        }
+
+        @media (min-width: 500px) {
+
+            .open,
+            .exit {
+                display: none;
+            }
+
+            nav {
+                visibility: unset;
+                background: none;
+                position: unset;
+                height: auto;
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            ul {
+                display: flex;
+                margin-top: auto;
+                width: auto;
+                float: right;
+                margin: 0;
+            }
+
+            li a {
+                color: #ADDBFF;
+                display: block;
+                padding: 1em;
+                background: none;
+            }
+
+            .active a {
+                color: white;
+            }
+
+
+
+            /* Added CSS */
+
+            header {
+                overflow: visible;
+            }
+
+            .sub {
+                position: relative;
+            }
+
+            .submenu {
+                display: none;
+            }
+
+            .sub:hover .submenu {
+                display: flex;
+                position: absolute;
+                top: 3.3em;
+                right: 0;
+                background: white;
+                padding: 1em 2em;
+                box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.07);
+            }
+
+            /* Your CSS Here */
+
+            .submenu ul {
+                display: block;
+                margin: 1.5em 0 0;
+            }
+
+            .submenu li a {
+                padding: 0 0 .5em 0;
+                font-weight: bold;
+                color: #1D2226;
+                font-size: .7em;
+                text-transform: uppercase;
+            }
+
+            .submenu p {
+                min-width: 12em;
+                padding-left: 1em;
+                border-left: 1px solid gray;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo">Company</a>
+
+        <svg height="32px" id="menu-btn" class="open" viewBox="0 0 32 32">
+            <path fill="white"
+                d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z" />
+        </svg>
+
+        <nav id="nav">
+            <svg viewBox="0 0 24 24" id="exit-btn" class="exit">
+                <path id="exit" fill="white"
+                    d="M14.8,12l3.6-3.6c0.8-0.8,0.8-2,0-2.8c-0.8-0.8-2-0.8-2.8,0L12,9.2L8.4,5.6c-0.8-0.8-2-0.8-2.8,0   c-0.8,0.8-0.8,2,0,2.8L9.2,12l-3.6,3.6c-0.8,0.8-0.8,2,0,2.8C6,18.8,6.5,19,7,19s1-0.2,1.4-0.6l3.6-3.6l3.6,3.6   C16,18.8,16.5,19,17,19s1-0.2,1.4-0.6c0.8-0.8,0.8-2,0-2.8L14.8,12z" />
+            </svg>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li class="active"><a href="#">About</a></li>
+                <li class="sub">
+                    <a href="#">Services</a>
+                    <div class="submenu">
+                        <ul>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Deployment</a></li>
+                            <li><a href="#">Execution</a></li>
+                        </ul>
+                        <p>We offer a variety of services that will met your every need.</p>
+                    </div>
+                </li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <a href="12.html">next</a>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
